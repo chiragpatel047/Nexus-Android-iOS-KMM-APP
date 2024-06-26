@@ -27,11 +27,10 @@ fun App() {
 
             NavHost(navController, startDestination = "MainScreen") {
                 composable("MainScreen") {
-                    MainScreen(navController)
+                    MainScreen()
                 }
             }
         }
-
     }
 }
 
