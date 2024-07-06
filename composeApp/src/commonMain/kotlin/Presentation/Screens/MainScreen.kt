@@ -83,6 +83,7 @@ fun MainScreen(navController: NavHostController = rememberNavController()) {
                     currentNavScreen.value = "SearchScreen"
                     SearchScreen(navController)
                 }
+
                 composable("SavedScreen") {
                     isBottomBarShowing.value = true
                     currentNavScreen.value = "SavedScreen"
