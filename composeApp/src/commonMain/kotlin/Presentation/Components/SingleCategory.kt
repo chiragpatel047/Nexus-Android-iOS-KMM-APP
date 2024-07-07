@@ -2,6 +2,7 @@ package Presentation.Components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -25,21 +26,43 @@ import org.jetbrains.compose.resources.painterResource
 
 @Composable
 fun SingleCategory() {
-    Box() {
-        Image(
-            painter = painterResource(Res.drawable.temp_movie_banner),
-            contentDescription = "",
-            contentScale = ContentScale.Crop,
-            modifier = Modifier.fillMaxWidth().height(100.dp).clip(RoundedCornerShape(25.dp))
-        )
-        Box(Modifier.align(Alignment.BottomEnd).padding(10.dp)) {
-            Text(
-                text = "SCI-FI",
-                fontSize = 12.sp,
-                color = Color.White,
-                fontFamily = FontFamily(Font(Res.font.poppins_medium)),
-                modifier = Modifier.padding(10.dp)
+
+    Row(Modifier.fillMaxWidth()) {
+        Box(Modifier.padding(10.dp).weight(1f)) {
+            Image(
+                painter = painterResource(Res.drawable.temp_movie_banner),
+                contentDescription = "",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxWidth().height(100.dp).clip(RoundedCornerShape(25.dp))
             )
+            Box(Modifier.align(Alignment.BottomEnd).padding(10.dp)) {
+                Text(
+                    text = "SCI-FI",
+                    fontSize = 12.sp,
+                    color = Color.White,
+                    fontFamily = FontFamily(Font(Res.font.poppins_medium)),
+                    modifier = Modifier.padding(10.dp)
+                )
+            }
+        }
+        Box(Modifier.padding(10.dp).weight(1f)) {
+            Image(
+                painter = painterResource(Res.drawable.temp_movie_banner),
+                contentDescription = "",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxWidth().height(100.dp).clip(RoundedCornerShape(25.dp))
+            )
+            Box(Modifier.align(Alignment.BottomEnd).padding(10.dp)) {
+                Text(
+                    text = "SCI-FI",
+                    fontSize = 12.sp,
+                    color = Color.White,
+                    fontFamily = FontFamily(Font(Res.font.poppins_medium)),
+                    modifier = Modifier.padding(10.dp)
+                )
+            }
         }
     }
+
+
 }

@@ -15,8 +15,11 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
@@ -81,6 +84,16 @@ fun HomeScreen(navController: NavController) {
                 }
             }
 
+            textWithSeeAllText("Category") {
+
+            }
+
+            Column(Modifier.fillMaxWidth().padding(10.dp, 0.dp)) {
+                repeat(3) {
+                    SingleCategory()
+                }
+            }
+
             textWithSeeAllText("New Releases") {
 
             }
@@ -97,17 +110,25 @@ fun HomeScreen(navController: NavController) {
                 }
             }
 
-            textWithSeeAllText("Category") {
+            textWithSeeAllText("For you") {
 
             }
 
-            val state = rememberLazyGridState()
-
-            Column(modifier = Modifier.fillMaxWidth()) {
-                repeat(8) {
-                    SingleCategory()
+            LazyRow(Modifier.fillMaxWidth()) {
+                item {
+                    Spacer(Modifier.padding(8.dp))
+                }
+                items(10) {
+                    SingleShow()
+                }
+                item {
+                    Spacer(Modifier.padding(8.dp))
                 }
             }
+
+
         }
     }
 }
+
+
