@@ -126,6 +126,7 @@ fun HomeScreen(navController: NavController) {
                 }
             }
 
+            Spacer(Modifier.padding(50.dp))
 
         }
     }

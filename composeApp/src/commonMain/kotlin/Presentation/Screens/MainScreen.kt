@@ -38,6 +38,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.key.Key.Companion.R
 import androidx.compose.ui.text.font.FontFamily
@@ -61,7 +62,7 @@ import org.jetbrains.compose.resources.painterResource
 @Composable
 fun MainScreen(navController: NavHostController = rememberNavController()) {
 
-    Column(Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background)) {
+    Box(Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background)) {
 
         val homeViewModel = koinViewModel<HomeViewModel>()
         val showListResult by homeViewModel.showListResult.collectAsState()
@@ -71,7 +72,7 @@ fun MainScreen(navController: NavHostController = rememberNavController()) {
             mutableStateOf(true)
         }
 
-        Column(Modifier.fillMaxWidth().weight(1f)) {
+        Column(Modifier.fillMaxWidth()) {
             NavHost(navController, startDestination = "HomeScreen") {
                 composable("HomeScreen") {
                     isBottomBarShowing.value = true
@@ -89,6 +90,7 @@ fun MainScreen(navController: NavHostController = rememberNavController()) {
                     currentNavScreen.value = "SavedScreen"
                     SavedScreen(navController)
                 }
+
                 composable("ProfileScreen") {
                     isBottomBarShowing.value = true
                     currentNavScreen.value = "ProfileScreen"
@@ -102,11 +104,23 @@ fun MainScreen(navController: NavHostController = rememberNavController()) {
             }
         }
 
-        AnimatedVisibility(isBottomBarShowing.value) {
+        AnimatedVisibility(
+            visible = isBottomBarShowing.value,
+            modifier = Modifier.align(Alignment.BottomStart).background(
+                brush = Brush.verticalGradient(
+                    colors = listOf(
+                        Color.Transparent,
+                        Color.Black.copy(alpha = 0.1f)
+                    ),
+                    startY = 0f,
+                    endY = 400.0f
+                )
+            )
+        ) {
             Row(
-                Modifier.fillMaxWidth()
+                Modifier.fillMaxWidth().align(Alignment.BottomCenter)
                     .shadow(20.dp, RoundedCornerShape(0.dp), true, Color.Black)
-                    .background(MaterialTheme.colorScheme.surface)
+                    .background(MaterialTheme.colorScheme.background.copy(alpha = 0.9f))
                     .padding(0.dp, 15.dp),
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.Bottom
@@ -194,33 +208,33 @@ fun MainScreen(navController: NavHostController = rememberNavController()) {
                         fontFamily = FontFamily(Font(Res.font.poppins_medium))
                     )
                 }
-                Column(
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.clickable {
-                        if (!currentNavScreen.equals("ProfileScreen")) {
-                            currentNavScreen.value = "ProfileScreen"
-                            navController.navigate("ProfileScreen") {
-                                launchSingleTop = true
-                                popUpTo("ProfileScreen")
-                            }
-                        }
-                    }
-                ) {
-                    Icon(
-                        painter = painterResource(Res.drawable.user),
-                        tint = if (currentNavScreen.value.equals("ProfileScreen")) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline,
-                        contentDescription = "",
-                        modifier = Modifier.size(20.dp)
-                    )
-                    Spacer(modifier = Modifier.padding(2.dp))
-                    Text(
-                        text = "Profile",
-                        color = if (currentNavScreen.value.equals("ProfileScreen")) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline,
-                        fontSize = 12.sp,
-                        fontFamily = FontFamily(Font(Res.font.poppins_medium))
-                    )
-                }
+//                Column(
+//                    verticalArrangement = Arrangement.Center,
+//                    horizontalAlignment = Alignment.CenterHorizontally,
+//                    modifier = Modifier.clickable {
+//                        if (!currentNavScreen.equals("ProfileScreen")) {
+//                            currentNavScreen.value = "ProfileScreen"
+//                            navController.navigate("ProfileScreen") {
+//                                launchSingleTop = true
+//                                popUpTo("ProfileScreen")
+//                            }
+//                        }
+//                    }
+//                ) {
+//                    Icon(
+//                        painter = painterResource(Res.drawable.user),
+//                        tint = if (currentNavScreen.value.equals("ProfileScreen")) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline,
+//                        contentDescription = "",
+//                        modifier = Modifier.size(20.dp)
+//                    )
+//                    Spacer(modifier = Modifier.padding(2.dp))
+//                    Text(
+//                        text = "Profile",
+//                        color = if (currentNavScreen.value.equals("ProfileScreen")) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline,
+//                        fontSize = 12.sp,
+//                        fontFamily = FontFamily(Font(Res.font.poppins_medium))
+//                    )
+//                }
             }
         }
     }

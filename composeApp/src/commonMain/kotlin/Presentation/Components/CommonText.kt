@@ -30,11 +30,10 @@ fun textWithSeeAllText(title: String, onClick: () -> Unit) {
         verticalAlignment = Alignment.CenterVertically
     ) {
 
-
         Text(
             text = title,
             textAlign = TextAlign.Start,
-            fontSize = 18.sp,
+            fontSize = 20.sp,
             color = MaterialTheme.colorScheme.onBackground,
             fontWeight = FontWeight.Bold,
             fontFamily = FontFamily(Font(Res.font.poppins_medium))

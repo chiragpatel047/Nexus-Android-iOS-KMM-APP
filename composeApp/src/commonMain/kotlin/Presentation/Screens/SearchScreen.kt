@@ -124,12 +124,14 @@ fun SearchScreen(navController: NavController) {
                 columns = GridCells.Fixed(2),
                 modifier = Modifier.padding(15.dp, 0.dp)
             ) {
-
                 items(20) {
                     SingleGridShow()
                 }
-
+                item {
+                    Spacer(Modifier.padding(50.dp))
+                }
             }
+
         }
     }
 }
