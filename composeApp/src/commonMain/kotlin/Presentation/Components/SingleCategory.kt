@@ -45,6 +45,7 @@ fun SingleCategory() {
                 )
             }
         }
+
         Box(Modifier.padding(10.dp).weight(1f)) {
             Image(
                 painter = painterResource(Res.drawable.temp_movie_banner),
